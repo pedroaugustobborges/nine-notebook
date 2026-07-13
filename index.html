@@ -462,7 +462,9 @@
 <script>
 (function(){
   // Data alvo: 14/07/2026 12:00 horário de Brasília (BRT, UTC-3)
-  var targetTime = new Date('2026-07-13T18:00:00-03:00').getTime();
+  // O sufixo "-03:00" já informa ao JS que este horário está no fuso de Brasília,
+  // então ele é convertido corretamente para qualquer fuso do visitante.
+  var targetTime = new Date('2026-07-14T12:00:00-03:00').getTime();
 
   var elDays = document.getElementById('days');
   var elHours = document.getElementById('hours');
