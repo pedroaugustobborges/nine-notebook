@@ -2,7 +2,10 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#8fd9ff">
 <title>Ninne Cards ⭐ Praia dos Campeões</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet">
 <style>
@@ -175,6 +178,7 @@
     border:6px solid #fff; border-radius:999px; padding:20px 44px; cursor:pointer;
     box-shadow:0 10px 0 rgba(0,0,0,.18);
     animation:bounceT 1.4s ease-in-out infinite;
+    touch-action:manipulation; -webkit-tap-highlight-color:transparent;
   }
   .overlay button:active{transform:translateY(6px); box-shadow:0 4px 0 rgba(0,0,0,.18)}
   .overlay p{position:absolute; bottom:12vh; color:#fff; font-weight:600; text-shadow:0 2px 0 rgba(0,0,0,.2); font-size:15px}
@@ -322,6 +326,102 @@
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation-duration:.001s !important; animation-iteration-count:1 !important}
     .bar i.run{animation:fill 12s linear forwards !important}
+  }
+
+  /* ============================================================
+     RESPONSIVE — PORTRAIT PHONES  (≤ 600 px wide)
+  ============================================================ */
+  @media(max-width:600px){
+    /* shrink the sun so it doesn't crowd the card */
+    .sun{width:76px;height:76px;top:2.5vh;left:2.5vw;box-shadow:0 0 36px 14px rgba(255,217,59,.5)}
+    .sun-face{font-size:27px}
+    /* palms hug the edges */
+    .palm{font-size:66px;left:0}
+    .palm2{font-size:58px;right:0}
+    /* header tighter */
+    header{top:1.2vh}
+    header p{font-size:11px}
+    /* push stage down a bit more so header has room */
+    .stage{padding-top:11vh}
+    /* taller slot — let it breathe a bit more vertically */
+    .slot{height:min(510px,70vh)}
+    /* card internals */
+    .card{padding:8px 10px;gap:4px}
+    .lvl{font-size:11px;padding:5px 10px 6px}
+    .top{margin-top:20px}
+    .top .nm{font-size:clamp(15px,3.8vw,19px)}
+    .top .hp b{font-size:17px}
+    .art{height:38%}
+    .typ{font-size:10px;padding:2px 8px}
+    .atk{padding:5px 6px;gap:6px}
+    .atk .cost{font-size:14px}
+    .atk .txt b{font-size:12.5px}
+    .atk .txt small{font-size:9.5px;line-height:1.2}
+    .atk .dmg{font-size:15px}
+    .foot{font-size:9px;padding-top:4px;gap:4px}
+    .flavor{font-size:9px}
+    /* HUD */
+    .hud{bottom:1vh;gap:5px}
+    .bar{width:min(250px,72vw);height:8px}
+    .dots span{width:10px;height:10px}
+    /* overlay button easier to tap */
+    .overlay button{
+      font-size:clamp(18px,5vw,28px);
+      padding:16px 36px;
+      touch-action:manipulation;
+    }
+  }
+
+  /* Very small phones (≤ 360 px wide — e.g. Galaxy A series) */
+  @media(max-width:360px){
+    .slot{height:min(460px,67vh)}
+    .card{padding:6px 8px;gap:3px;border-width:8px;border-radius:18px}
+    .art{height:35%}
+    .atk{gap:4px}
+    .atk .txt small{font-size:9px}
+    .foot{font-size:8.5px;gap:3px}
+  }
+
+  /* ============================================================
+     RESPONSIVE — LANDSCAPE PHONES  (height ≤ 480 px)
+  ============================================================ */
+  @media(max-height:480px) and (orientation:landscape){
+    /* allow the page to scroll vertically in landscape */
+    body{overflow-y:auto}
+
+    /* header becomes part of the flow */
+    header{
+      position:relative;top:auto;
+      padding:4px 0 2px;
+      background:rgba(143,107,217,.18);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+    }
+    header p{display:none}
+    header h1{font-size:clamp(14px,2.8vw,22px);animation:none}
+
+    /* stage flows normally below header */
+    .stage{
+      position:relative;inset:auto;
+      display:flex;justify-content:center;
+      padding:8px 0 14px;
+    }
+    /* card narrower & shorter to fit landscape height */
+    .slot{width:min(290px,46vw);height:min(400px,80vh);position:relative}
+    .card{gap:2px;padding:6px 9px;border-width:8px}
+    .art{height:33%}
+    /* hide attack descriptions — too cramped */
+    .atk .txt small{display:none}
+    .atk{padding:4px 5px;gap:4px}
+    .atk .dmg{font-size:13px}
+    /* HUD fixed at bottom of screen */
+    .hud{position:fixed;bottom:0;padding:4px 0 2px;gap:4px;background:rgba(255,255,255,.06);backdrop-filter:blur(4px)}
+    .bar{height:7px}
+    /* hide heavy scenery that wastes space */
+    .sun,.cloud,.wave,.crab,.shark,.starfish,.bucket,.ball-bg,.palm,.palm2{display:none}
+    /* overlay */
+    .overlay button{font-size:clamp(14px,3.5vw,24px);padding:12px 28px;touch-action:manipulation}
+    .overlay p{bottom:7vh;font-size:13px}
   }
 </style>
 </head>
